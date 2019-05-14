@@ -6,7 +6,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   scope :with_full_name, -> { where.not(full_name: nil) }
 
-  #before_create :create_slug
+  before_create :create_slug
 
   def admin?
     admin
@@ -14,8 +14,8 @@ class User < ApplicationRecord
 
   private
 
-  # def create_slug
-  #   # make this prettier
-  #   self.slug = full_name.split(" ")[0].downcase + "-" + full_name.split(" ")[1].first.downcase
-  # end
+  def create_slug
+    # make this prettier
+    self.slug = full_name.split(" ")[0].downcase + "-" + full_name.split(" ")[1].first.downcase
+  end
 end
