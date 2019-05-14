@@ -12,10 +12,6 @@ class User < ApplicationRecord
     admin
   end
 
-  def avatar?
-    !avatar.nil?
-  end
-
   private
 
   # def create_slug
