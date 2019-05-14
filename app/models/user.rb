@@ -7,6 +7,14 @@ class User < ApplicationRecord
 
   before_create :create_slug
 
+  def admin?
+    admin
+  end
+
+  def avatar?
+    !avatar.nil?
+  end
+
   private
 
   def create_slug
