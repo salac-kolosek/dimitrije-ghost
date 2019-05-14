@@ -38,6 +38,7 @@ gem 'config'
 
 #Used for user authentification
 gem 'devise'
+gem 'devise_invitable'
 
 #Bootstrap
 gem 'bootstrap', '~> 4.3.1'

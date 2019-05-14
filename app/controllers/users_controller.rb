@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [ :edit, :update ]
 
+  # This will be deleted, for now this is root
+  def index
+    @users = User.with_full_name
+  end
+
   def edit
     authorize @user
   end
