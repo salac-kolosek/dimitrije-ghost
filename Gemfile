@@ -55,6 +55,9 @@ gem 'carrierwave', '~> 1.0'
 #Used for decorators
 gem 'draper'
 
+#Used for pagination
+gem "kaminari"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

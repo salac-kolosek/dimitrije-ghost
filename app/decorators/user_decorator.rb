@@ -10,4 +10,12 @@ class UserDecorator < Draper::Decorator
       h.image_tag 'https://pngimage.net/wp-content/uploads/2018/06/no-avatar-png.png', size: 42
     end
   end
+
+  def role
+    if object.admin?
+      "Admin"
+    else
+      "Author"
+    end
+  end
 end
