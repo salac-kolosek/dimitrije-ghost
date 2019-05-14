@@ -18,6 +18,14 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= current_user.full_name %>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <%= link_to "Profile", edit_user_path(current_user), class: "dropdown-item" %>
+              </div>
+            </li>
             <li class="nav-item">
               <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "nav-link" %>
             </li>
@@ -32,10 +40,11 @@
         </ul>
       </div>
     </nav>
-
+    <br>
     <div class="container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
 
       <%= yield %>
     </div>
