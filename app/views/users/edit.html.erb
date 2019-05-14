@@ -1,4 +1,16 @@
 <%= form_for @user, url: user_path(@user) do |f| %>
+
+  <div class="form-group">
+    <% if @user.avatar.nil? %>
+      <img src="https://pngimage.net/wp-content/uploads/2018/06/no-avatar-png.png" alt="Avatar" height="42" width="42">
+    <% else %>
+      <%= image_tag @user.avatar_url, size: 42 %>
+    <% end %>
+    <br><br>
+    <%= f.label :avatar %><br>
+    <%= f.file_field :avatar %>
+  </div>
+
   <div class="form-group">
     <%= f.label :full_name %><br />
     <%= f.text_field :full_name, autocomplete: "Full name",class: "form-control" %>

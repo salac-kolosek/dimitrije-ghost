@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def update
     @user.update(user_params)
+    flash[:success] = "Profile updated!"
 
     redirect_to edit_user_path(@user)
   end
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:full_name, :slug, :email, :bio)
+    params.require(:user).permit(:full_name, :slug, :email, :bio, :avatar)
   end
 
   def set_user
