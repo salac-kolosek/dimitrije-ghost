@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   resources :users, only: [ :edit, :update ]
+  #resource :team, only: :index
+  get 'team', action: :index, controller: 'team' 
 end
