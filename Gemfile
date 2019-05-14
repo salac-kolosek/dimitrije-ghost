@@ -52,6 +52,9 @@ gem 'pundit'
 #Used for image upload
 gem 'carrierwave', '~> 1.0'
 
+#Used for decorators
+gem 'draper'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
