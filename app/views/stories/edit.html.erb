@@ -1,3 +1,7 @@
 <%= link_to "View mode", story_path(@story), class: "btn btn-primary" %>
+<% if current_user.admin? %>
+  <%= link_to "Delete story", story_path(@story), method: :delete, class: "btn btn-primary" %>
+<% end %>
 
 <%= render 'form' %>
+

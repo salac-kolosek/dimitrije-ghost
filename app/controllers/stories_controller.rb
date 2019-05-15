@@ -18,6 +18,7 @@ class StoriesController < ApplicationController
     @story = Story.new(story_params)
     @story.user = current_user
     if @story.save
+      flash[:success] = "Story created!"
       redirect_to stories_path
     else
       flash[:alert] = "There was problem!"
@@ -27,6 +28,22 @@ class StoriesController < ApplicationController
 
   def edit
     @story = Story.find(params[:id])
+  end
+
+  def update
+    @story = Story.find(params[:id])
+    @story.update(story_params)
+
+    flash[:success] = "Story updated!"
+    redirect_to edit_story_path(@story)
+  end
+
+  def destroy
+    @story = Story.find(params[:id])
+    @story.destroy
+
+    flash[:success] = "Story deleted!"
+    redirect_to stories_path
   end
 
   private
