@@ -1,4 +1,22 @@
 <div>
   <h5>Invite new members</h5>
   <%= link_to "Invite", new_user_invitation_path, class: "btn btn-primary" %>
+
+  <hr>
+  <h3>All members: </h3>
+  <table class="table table-borderless">
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.show_avatar %></td>
+          <td><%= link_to user.full_name, edit_user_path(user) %></td>
+          <td><%= user.role %></td>
+          <td><%= "Last seen #{time_ago_in_words(user.last_sign_in_at)} ago" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @users %>
+
 </div>
