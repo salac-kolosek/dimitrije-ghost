@@ -1,13 +1,18 @@
 class StoriesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_story, only: [ :edit, :update, :destroy, :show ]
 
   def index
-    # admin can see all, authors can only see stories they own, or have access to
-    @stories = Story.all
+    if current_user.admin?
+      @stories = Story.all
+    else
+      # and stories where they have access
+      @stories = current_user.my_stories
+    end
   end
 
   def show
-    @story = Story.find(params[:id])
+    
   end
 
   def new
@@ -27,11 +32,9 @@ class StoriesController < ApplicationController
   end
 
   def edit
-    @story = Story.find(params[:id])
   end
 
   def update
-    @story = Story.find(params[:id])
     @story.update(story_params)
 
     flash[:success] = "Story updated!"
@@ -39,7 +42,6 @@ class StoriesController < ApplicationController
   end
 
   def destroy
-    @story = Story.find(params[:id])
     @story.destroy
 
     flash[:success] = "Story deleted!"
@@ -50,6 +52,10 @@ class StoriesController < ApplicationController
 
   def story_params
     params.require(:story).permit(:title, :content)
+  end
+
+  def set_story
+    @story = Story.find(params[:id])
   end
 
 end
