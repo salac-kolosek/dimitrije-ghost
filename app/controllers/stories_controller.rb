@@ -16,7 +16,7 @@ class StoriesController < ApplicationController
 
   def create
     @story = Story.new(story_params)
-    @story.user = current_user
+    @story.owner = current_user
     if @story.save
       flash[:success] = "Story created!"
       redirect_to stories_path
