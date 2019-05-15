@@ -1,0 +1,61 @@
+class StoriesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_story, only: [ :edit, :update, :destroy, :show ]
+
+  def index
+    if current_user.admin?
+      @stories = Story.all
+    else
+      # and stories where they have access
+      @stories = current_user.my_stories
+    end
+  end
+
+  def show
+    
+  end
+
+  def new
+    @story = Story.new
+  end
+
+  def create
+    @story = Story.new(story_params)
+    @story.owner = current_user
+    if @story.save
+      flash[:success] = "Story created!"
+      redirect_to stories_path
+    else
+      flash[:alert] = "There was problem!"
+      redirect_to new_stories_path
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    @story.update(story_params)
+
+    flash[:success] = "Story updated!"
+    redirect_to edit_story_path(@story)
+  end
+
+  def destroy
+    @story.destroy
+
+    flash[:success] = "Story deleted!"
+    redirect_to stories_path
+  end
+
+  private
+
+  def story_params
+    params.require(:story).permit(:title, :content)
+  end
+
+  def set_story
+    @story = Story.find(params[:id])
+  end
+
+end

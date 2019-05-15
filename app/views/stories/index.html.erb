@@ -1,0 +1,13 @@
+<h1>Stories</h1>
+<p>
+<%= link_to "Write story", new_story_path, class: "btn btn-primary" %>
+</p>
+
+<ul>
+  <% @stories.each do |story| %>
+    <li>
+      <%= link_to story.title, edit_story_path(story) %>
+      <%= " - Written by #{story.owner.full_name}" %>
+    </li>
+  <% end %>
+</ul>

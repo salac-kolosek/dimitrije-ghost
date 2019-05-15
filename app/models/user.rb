@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
   mount_uploader :avatar, AvatarUploader
+  has_many :my_stories, foreign_key: "owner_id", class_name: "Story"
+  has_many :story_editors
+  has_many :stories, through: :story_editors
   scope :with_full_name, -> { where.not(full_name: nil) }
 
   before_create :create_slug
