@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   resources :users, only: [ :index, :edit, :update ]
+  resources :stories
   get 'team', action: :index, controller: 'team'
 
   # i need root page for devise, this will be changed later

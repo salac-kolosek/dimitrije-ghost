@@ -1,0 +1,10 @@
+<h1>Stories</h1>
+
+<ul>
+  <% @stories.each do |story| %>
+    <li>
+      <%= link_to story.title, edit_story_path(story) %>
+      <%= " - Written by #{story.user.full_name}" %>
+    </li>
+  <% end %>
+</ul>
