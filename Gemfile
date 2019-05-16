@@ -67,7 +67,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   gem "database_cleaner"
+  gem 'shoulda-matchers', '~> 3.0', require: false
   gem "rspec-rails"
+  gem "factory_bot_rails"
 
   gem 'rubocop'
 end
