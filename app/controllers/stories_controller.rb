@@ -51,7 +51,7 @@ class StoriesController < ApplicationController
   private
 
   def story_params
-    params.require(:story).permit(:title, :content)
+    params.require(:story).permit(:title, :content, :tag_list)
   end
 
   def set_story
