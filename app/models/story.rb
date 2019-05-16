@@ -5,6 +5,14 @@ class Story < ApplicationRecord
   has_many :taggings
   has_many :tags, through: :taggings
 
+  def self.search(term)
+    if term
+      where('title LIKE ?', "%#{term}%")
+    else
+      all
+    end
+  end
+
   def tag_list
     tags.map(&:name).join(', ')
   end

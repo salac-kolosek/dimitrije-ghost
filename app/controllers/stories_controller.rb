@@ -4,15 +4,14 @@ class StoriesController < ApplicationController
 
   def index
     if current_user.admin?
-      @stories = Story.all
+      @stories = Story.search(params[:term])
     else
       # and stories where they have access
-      @stories = current_user.my_stories
+      @stories = current_user.my_stories.where('title LIKE ?', "%#{params[:term]}%")
     end
   end
 
   def show
-    
   end
 
   def new
