@@ -26,7 +26,7 @@ class StoriesController < ApplicationController
       redirect_to stories_path
     else
       flash[:alert] = "There was problem!"
-      redirect_to new_stories_path
+      redirect_to new_story_path
     end
   end
 
@@ -34,9 +34,12 @@ class StoriesController < ApplicationController
   end
 
   def update
-    @story.update(story_params)
-
-    flash[:success] = "Story updated!"
+    if @story.update(story_params)
+      flash[:success] = "Story updated!"
+    else
+      flash[:alert] = "There was problem!"
+    end
+    
     redirect_to edit_story_path(@story)
   end
 
