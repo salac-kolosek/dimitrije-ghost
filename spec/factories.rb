@@ -13,4 +13,8 @@ FactoryBot.define do
     content { "Hello, World!" }
     association :owner, factory: :user
   end
+
+  factory :tag do
+    name { "jquery" }
+  end
 end
