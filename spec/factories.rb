@@ -7,4 +7,10 @@ FactoryBot.define do
     bio { "Web developer" }
     admin { false }
   end
+
+  factory :story do
+    title { "My first blog post" }
+    content { "Hello, World!" }
+    association :owner, factory: :user
+  end
 end

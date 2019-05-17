@@ -37,6 +37,7 @@ RSpec.describe User, type: :model do
 
   describe "Associations" do
     it { is_expected.to have_many(:my_stories).class_name("Story") }
+    it { is_expected.to have_many(:story_editors).class_name("StoryEditor") }
     it { is_expected.to have_many(:stories).class_name("Story").through(:story_editors) }
   end
 
