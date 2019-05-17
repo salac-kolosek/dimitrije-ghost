@@ -57,7 +57,7 @@ RSpec.configure do |config|
 end
 
 def logs_in_user(user)
-  visit unauthenticated_root_path
+  visit root_path
   fill_in 'Email', with: user.email
   fill_in 'Password', with: user.password
   click_button 'Log in'

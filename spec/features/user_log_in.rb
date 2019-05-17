@@ -4,7 +4,7 @@ RSpec.feature "User log in" do
   given!(:user) { create(:user) }
  
   scenario 'with valid credentials' do
-    visit unauthenticated_root_path
+    visit root_path
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Log in'
@@ -12,7 +12,7 @@ RSpec.feature "User log in" do
   end
 
   scenario 'with invalid credentials' do
-    visit unauthenticated_root_path
+    visit root_path
     fill_in 'Email', with: user.email
     fill_in 'Password', with: "invalid password"
     click_button 'Log in'
