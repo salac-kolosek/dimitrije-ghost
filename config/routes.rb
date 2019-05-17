@@ -9,6 +9,14 @@ Rails.application.routes.draw do
   get 'team', action: :index, controller: 'team'
   get 'tags/:tag', to: 'articles#index', as: :tag
 
-  # i need root page for devise, this will be changed later
-  root 'users#index' 
+
+  devise_scope :user do
+    authenticated :user do
+      root 'stories#index', as: :authenticated_root
+    end
+
+    unauthenticated do
+      root 'devise/sessions#new', as: :root
+    end
+  end
 end

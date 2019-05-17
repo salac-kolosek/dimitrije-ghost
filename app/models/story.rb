@@ -5,6 +5,8 @@ class Story < ApplicationRecord
   has_many :taggings
   has_many :tags, through: :taggings
 
+  validates :owner, :title, presence: true
+
   def self.search(term)
     if term
       where('title LIKE ?', "%#{term}%")
