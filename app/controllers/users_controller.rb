@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # This will be deleted, for now this is root
   def index
-    @users = User.all
+    @users = User.all.decorate
   end
 
   def edit
