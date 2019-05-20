@@ -62,6 +62,9 @@ gem "kaminari"
 #Used for markdown
 gem 'redcarpet'
 
+#Used for soft deleting 
+gem 'acts_as_paranoid', '~> 0.6.0'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
