@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
+  acts_as_paranoid
   mount_uploader :avatar, AvatarUploader
   has_many :my_stories, foreign_key: "owner_id", class_name: "Story"
   has_many :story_editors

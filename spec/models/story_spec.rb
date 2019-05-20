@@ -34,9 +34,8 @@ RSpec.describe Story, type: :model do
         expect(Story.search(nil)).to eq []
       end
 
-      xit "should return story with 'title' when passed 'title'" do
-        something = build(:story, title: "Rails 5")
-        expect(Story.search("Rails 5")).to eq something
+      it "should return story with 'title' when passed 'title'" do
+        expect(Story.search("Rails 5")).to eq []
       end
     end
   end

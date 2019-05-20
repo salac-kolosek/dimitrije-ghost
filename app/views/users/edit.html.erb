@@ -33,5 +33,9 @@
   <% end %>
   <div class="actions">
     <%= f.submit "Save", class: "btn btn-primary" %>
+
+    <% if current_user.admin? %>
+      <%= link_to "Remove", user_path, method: "delete", class: "btn btn-primary" %>
+    <% end %>
   </div>
 <% end %>

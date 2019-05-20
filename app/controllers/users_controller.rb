@@ -21,6 +21,13 @@ class UsersController < ApplicationController
     redirect_to edit_user_path(@user)
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    DeleteMemberJob.perform_later(@user)
+    flash[:success] = "Member removed!"
+    redirect_to team_path
+  end
+
   private
 
   def user_params
