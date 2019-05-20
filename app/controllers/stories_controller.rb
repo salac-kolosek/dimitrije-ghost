@@ -39,14 +39,18 @@ class StoriesController < ApplicationController
     else
       flash[:alert] = "There was problem!"
     end
-    
+
     redirect_to edit_story_path(@story)
   end
 
   def destroy
-    @story.destroy
+    @story = Story.find(params[:id])
+    if @story.destroy
+      flash[:success] = "Story deleted!"
+    else
+      flash[:alert] = "Something went wrong!"
+    end
 
-    flash[:success] = "Story deleted!"
     redirect_to stories_path
   end
 
