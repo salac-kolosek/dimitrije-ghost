@@ -7,7 +7,7 @@ class StoriesController < ApplicationController
       @stories = Story.search(params[:term])
     else
       # and stories where they have access
-      @stories = current_user.my_stories.where('title LIKE ?', "%#{params[:term]}%")
+      @stories = current_user.my_stories.search(params[:term])
     end
   end
 
