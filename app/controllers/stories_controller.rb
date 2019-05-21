@@ -61,7 +61,7 @@ class StoriesController < ApplicationController
   end
 
   def set_story
-    @story = Story.find(params[:id])
+    @story = Story.friendly.find(params[:id])
   end
 
 end
