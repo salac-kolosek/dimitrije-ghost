@@ -62,11 +62,14 @@ gem "kaminari"
 #Used for markdown
 gem 'redcarpet'
 
-#Used for soft deleting 
+#Used for soft deleting
 gem 'acts_as_paranoid', '~> 0.6.0'
 
 #Used for active job queues
 gem 'sidekiq'
+
+#Used for friendly URLs
+gem 'friendly_id', '~> 5.2.4'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

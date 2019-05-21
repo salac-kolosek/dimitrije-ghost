@@ -1,0 +1,12 @@
+<% @stories.each do |story| %>
+  <div class="story-box">
+    <h5><%= link_to story.title, blog_path(story), class: "text-secondary font-weight-bold nounderline" %></h5>
+    <% story.tags.each do |tag| %>
+      <span class="badge badge-dark"><%= tag.name %></span>
+    <% end %>
+    <span class="text-muted"><%= " - Written by #{story.owner.full_name}" %></span>
+    <hr>
+  </div>
+<% end %>
+
+<%= paginate @stories %>
