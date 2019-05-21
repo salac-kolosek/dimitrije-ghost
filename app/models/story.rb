@@ -7,13 +7,7 @@ class Story < ApplicationRecord
 
   validates :owner, :title, presence: true
 
-  def self.search(term)
-    if term
-      where('title LIKE ?', "%#{term}%")
-    else
-      all
-    end
-  end
+  scope :search, -> (term) { where('title LIKE ? ', "%#{term}%") }
 
   def tag_list
     tags.map(&:name).join(', ')

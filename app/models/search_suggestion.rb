@@ -1,9 +1,5 @@
 class SearchSuggestion < ApplicationRecord
-  
-  def self.terms_for(prefix)
-    suggestions = where("term like ?", "#{prefix}_%")
-    suggestions.order("popularity desc").limit(10).pluck(:term)
-  end
+  scope :terms_for, -> (prefix) { where("term LIKE ?", "#{prefix}_%").order("popularity desc").limit(10).pluck(:term) }
 
   def self.index_products
     Story.find_each do |story|

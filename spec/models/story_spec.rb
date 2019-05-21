@@ -28,14 +28,18 @@ RSpec.describe Story, type: :model do
     it { is_expected.to validate_presence_of(:title) }
   end
 
-  describe "Methods" do 
+  describe "Scopes" do
     describe ".search" do
       it "should return all stories when passed nil" do
-        expect(Story.search(nil)).to eq []
+        story1 = create(:story)
+        user2 = create(:user, email: "user2@example.com")
+        story2 = create(:story, title: "Story 2", owner: user2)
+        expect(Story.search(nil).count).to eq [story1, story2].count
       end
 
-      it "should return story with 'title' when passed 'title'" do
-        expect(Story.search("Rails 5")).to eq []
+      it "should return story with title 'something' when passed 'someth'" do
+        something = create(:story, title: "Something")
+        expect(Story.search("someth").count).to eq [something].count
       end
     end
   end
