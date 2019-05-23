@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :users, only: [ :index, :edit, :update, :destroy ]
   resources :stories
   resources :blog, only: [ :index, :show ]
-  
+  resources :general_settings, only: [ :index ]
+  resources :site_title, only: [ :create ]
+
   get 'team', action: :index, controller: 'team'
   get 'tags/:tag', to: 'articles#index', as: :tag
 

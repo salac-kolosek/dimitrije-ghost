@@ -1,0 +1,2 @@
+class SiteTitle < ApplicationRecord
+end

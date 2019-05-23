@@ -28,6 +28,11 @@
               <%= link_to "Stories", stories_path, class: "nav-link" %>
             </li>
             <li>
+              <% if current_user.admin? %>
+                <%= link_to "General Settings", general_settings_path, class: "nav-link" %>
+              <% end %>
+            </li>
+            <li>
               <%= link_to "Site overview", blog_index_path, target: "_blank", class: "nav-link" %>
             </li>
             <li>
