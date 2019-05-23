@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_21_121749) do
+ActiveRecord::Schema.define(version: 2019_05_23_090132) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(version: 2019_05_21_121749) do
   create_table "search_suggestions", force: :cascade do |t|
     t.string "term"
     t.integer "popularity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "site_titles", force: :cascade do |t|
+    t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

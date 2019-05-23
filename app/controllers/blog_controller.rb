@@ -3,6 +3,7 @@ class BlogController < ApplicationController
 
   def index
     @stories = Kaminari.paginate_array(Story.all).page(params[:page]).per(7)
+    @site_title = SiteTitle.last
   end
 
   def show

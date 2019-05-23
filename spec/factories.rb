@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :site_title do
+    title { "MyString" }
+  end
+
   factory :user do
     email { "johndoe@example.com" }
     password { "password" }
