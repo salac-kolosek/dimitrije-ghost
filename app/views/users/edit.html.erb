@@ -27,6 +27,13 @@
     <%= f.text_area :bio, autocomplete: "Bio", class: "form-control" %>
   </div>
 
+  <% if current_user.admin? %>
+    <div class="form-group">
+      <%= f.label :role %>
+      <%= f.select :role, options_for_select([["Admin", User::ADMIN], ["Author", User::AUTHOR], ["Editor", User::EDITOR]], selected: @user.role || nil), {}, class: "form-control" %>
+    </div>
+  <% end %>
+
   <% if current_user == @user %>
     <%= link_to "Change password", edit_user_registration_path %>
     <br>

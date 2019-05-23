@@ -3,10 +3,9 @@ class StoriesController < ApplicationController
   before_action :set_story, only: [ :edit, :update, :destroy, :show ]
 
   def index
-    if current_user.admin?
+    if current_user.admin? || current_user.editor?
       @stories = Story.search(params[:term])
     else
-      # and stories where they have access
       @stories = current_user.my_stories.search(params[:term])
     end
   end
