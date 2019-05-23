@@ -22,6 +22,14 @@ class User < ApplicationRecord
     self.role == ADMIN
   end
 
+  def author?
+    self.role == AUTHOR
+  end
+
+  def editor?
+    self.role == EDITOR
+  end
+
   private
 
   def create_slug

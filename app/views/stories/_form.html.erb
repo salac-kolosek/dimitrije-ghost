@@ -18,11 +18,6 @@
   <div class="form-group">
     <%= f.label :content %>
     <%= f.text_area :content, class: "form-control", size: "30x10" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :editors %>
-    <%= collection_select(:story, :users_ids, User.all, :id, :full_name, { include_blank: false, :selected => @story.users }, { :multiple => true, :class => "form-control" } ) %>
   </div>  
 
   <%= f.submit class: "btn btn-primary" %>

@@ -12,10 +12,13 @@ class UserDecorator < Draper::Decorator
   end
 
   def role
-    if object.admin?
+    case object.role
+    when User::ADMIN
       "Admin"
-    else
+    when User::AUTHOR
       "Author"
+    when User::EDITOR
+      "Editor"
     end
   end
 end
