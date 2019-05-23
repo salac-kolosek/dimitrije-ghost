@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_23_090132) do
+ActiveRecord::Schema.define(version: 2019_05_23_102250) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -80,7 +80,6 @@ ActiveRecord::Schema.define(version: 2019_05_23_090132) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "admin", default: false
     t.string "full_name"
     t.string "slug"
     t.text "bio"
@@ -99,6 +98,7 @@ ActiveRecord::Schema.define(version: 2019_05_23_090132) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.datetime "deleted_at"
+    t.integer "role", default: 1
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true

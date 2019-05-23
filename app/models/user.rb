@@ -14,8 +14,12 @@ class User < ApplicationRecord
 
   before_create :create_slug
 
+  ADMIN = 0
+  AUTHOR = 1
+  EDITOR = 2
+
   def admin?
-    admin
+    self.role == ADMIN
   end
 
   private
