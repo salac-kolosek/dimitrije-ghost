@@ -10,7 +10,7 @@
         <tr>
           <td><%= user.show_avatar %></td>
           <td><%= link_to user.full_name, edit_user_path(user) %></td>
-          <td><%= user.role %></td>
+          <td><%= user.role_in_words %></td>
           <td><%= "Last seen #{time_ago_in_words(user.last_sign_in_at)} ago" %></td>
         </tr>
       <% end %>

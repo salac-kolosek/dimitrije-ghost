@@ -11,7 +11,7 @@ class UserDecorator < Draper::Decorator
     end
   end
 
-  def role
+  def role_in_words
     case object.role
     when User::ADMIN
       "Admin"
