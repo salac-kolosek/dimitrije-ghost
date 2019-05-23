@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_05_23_102250) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -41,24 +44,15 @@ ActiveRecord::Schema.define(version: 2019_05_23_102250) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "owner_id"
+    t.bigint "owner_id"
     t.string "slug"
     t.index ["owner_id"], name: "index_stories_on_owner_id"
     t.index ["slug"], name: "index_stories_on_slug", unique: true
   end
 
-  create_table "story_editors", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "story_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["story_id"], name: "index_story_editors_on_story_id"
-    t.index ["user_id"], name: "index_story_editors_on_user_id"
-  end
-
   create_table "taggings", force: :cascade do |t|
-    t.integer "tag_id"
-    t.integer "story_id"
+    t.bigint "tag_id"
+    t.bigint "story_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["story_id"], name: "index_taggings_on_story_id"
@@ -90,7 +84,7 @@ ActiveRecord::Schema.define(version: 2019_05_23_102250) do
     t.datetime "invitation_accepted_at"
     t.integer "invitation_limit"
     t.string "invited_by_type"
-    t.integer "invited_by_id"
+    t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
@@ -108,4 +102,7 @@ ActiveRecord::Schema.define(version: 2019_05_23_102250) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "stories", "users", column: "owner_id"
+  add_foreign_key "taggings", "stories"
+  add_foreign_key "taggings", "tags"
 end
