@@ -9,7 +9,6 @@ FactoryBot.define do
     full_name { "John Doe" }
     slug { "john-d" }
     bio { "Web developer" }
-    admin { false }
     last_sign_in_at { DateTime.now }
   end
 

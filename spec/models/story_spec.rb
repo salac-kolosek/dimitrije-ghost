@@ -17,8 +17,6 @@ RSpec.describe Story, type: :model do
 
   describe "Associations" do
     it { should belong_to(:owner).class_name("User") }
-    it { is_expected.to have_many(:story_editors).class_name("StoryEditor") }
-    it { is_expected.to have_many(:users).class_name("User").through(:story_editors) }
     it { is_expected.to have_many(:taggings).class_name("Tagging") }
     it { is_expected.to have_many(:tags).class_name("Tag").through(:taggings) }
   end
@@ -38,7 +36,7 @@ RSpec.describe Story, type: :model do
       end
 
       it "should return story with title 'something' when passed 'someth'" do
-        something = create(:story, title: "Something")
+        something = create(:story, title: "something")
         expect(Story.search("someth").count).to eq [something].count
       end
     end

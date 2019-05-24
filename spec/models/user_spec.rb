@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
-  let(:admin) { create(:user, admin: true)}
+  let(:admin) { create(:user, role: User::ADMIN)}
 
   it "has a valid factory" do
     expect(user).to be_valid
@@ -28,7 +28,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_db_column(:last_sign_in_at).of_type(:datetime) }
     it { is_expected.to have_db_column(:current_sign_in_ip).of_type(:string) }
     it { is_expected.to have_db_column(:last_sign_in_ip).of_type(:string) }
-    it { is_expected.to have_db_column(:admin).of_type(:boolean) }
+    it { is_expected.to have_db_column(:role).of_type(:integer) }
     it { is_expected.to have_db_column(:full_name).of_type(:string) }
     it { is_expected.to have_db_column(:slug).of_type(:string) }
     it { is_expected.to have_db_column(:avatar).of_type(:string) }
@@ -37,8 +37,6 @@ RSpec.describe User, type: :model do
 
   describe "Associations" do
     it { is_expected.to have_many(:my_stories).class_name("Story") }
-    it { is_expected.to have_many(:story_editors).class_name("StoryEditor") }
-    it { is_expected.to have_many(:stories).class_name("Story").through(:story_editors) }
   end
 
   describe "Validations" do
@@ -53,7 +51,7 @@ RSpec.describe User, type: :model do
 
   describe "Creation" do
     it "should always have a slug given a full name" do
-      params = { user: { email: "janedoe@email.com", password: "password", full_name: "Jane Doe", bio: "CEO", admin: false } }
+      params = { user: { email: "janedoe@email.com", password: "password", full_name: "Jane Doe", bio: "CEO"} }
 
       user = User.create(params[:user])
       expect(user.slug).to eql("jane-d")
