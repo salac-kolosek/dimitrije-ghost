@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Admin changes site title" do
-  given!(:admin) { create(:user, admin: true) }
+  given!(:admin) { create(:user, role: User::ADMIN) }
 
   scenario 'successfully' do
     logs_in_user(admin)

@@ -43,7 +43,6 @@ class StoriesController < ApplicationController
   end
 
   def destroy
-    @story = Story.find(params[:id])
     if @story.destroy
       flash[:success] = "Story deleted!"
     else
