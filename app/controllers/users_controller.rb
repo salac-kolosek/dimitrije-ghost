@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    DeleteMemberJob.perform_later(@user)
+    DeleteMemberWorker.perform_async(@user)
     flash[:success] = "Member removed!"
     redirect_to team_path
   end
