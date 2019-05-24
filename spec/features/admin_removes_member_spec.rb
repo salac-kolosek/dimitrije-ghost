@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Admin removes existing member" do
-  given!(:admin) { create(:user, admin: true) }
+  given!(:admin) { create(:user, role: User::ADMIN) }
   given!(:user) { create(:user, email: "test@example.com") }
 
   scenario 'successfully' do

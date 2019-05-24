@@ -6,8 +6,6 @@ class User < ApplicationRecord
   acts_as_paranoid
   mount_uploader :avatar, AvatarUploader
   has_many :my_stories, foreign_key: "owner_id", class_name: "Story"
-  has_many :story_editors
-  has_many :stories, through: :story_editors
 
   validates :email, uniqueness: true
   validates :full_name, presence: true

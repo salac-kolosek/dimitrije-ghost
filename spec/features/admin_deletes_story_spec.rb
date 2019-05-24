@@ -1,7 +1,7 @@
 require 'rails_helper'
- 
+
 RSpec.feature "Admin deletes existing story" do
-  given!(:admin) { create(:user, admin: true, email: "notjohndoe@example.com") }
+  given!(:admin) { create(:user, role: User::ADMIN, email: "notjohndoe@example.com") }
   given!(:story) { create(:story) }
 
 
