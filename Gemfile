@@ -74,8 +74,28 @@ gem 'friendly_id', '~> 5.2.4'
 #Used for logging
 gem 'rollbar'
 
+gem "byebug"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+
+# A high-level architecture for Ruby and Rails. (http://trailblazer.to)
+gem "trailblazer"
+
+# Convenient Rails support for Trailblazer. (http://trailblazer.to/gems/trailblazer/2.0/rails.html)
+gem "trailblazer-rails"
+
+# Form object decoupled from models with validation, population and presentation. (https://github.com/trailblazer/reform)
+gem "reform", "2.3.0.rc1"
+
+# Automatically load and include all common Rails form features. (https://github.com/trailblazer/reform-rails)
+gem "reform-rails"
+
+# A simple validation library (https://github.com/dry-rb/dry-validation)
+gem "dry-validation"
+
+# Type system for Ruby supporting coercions, constraints and complex types like structs, value objects, enums etc. (https://github.com/dry-rb/dry-types)
+gem "dry-types"
 
 group :development, :test do
   gem "database_cleaner"

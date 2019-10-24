@@ -4,6 +4,7 @@ class Story < ApplicationRecord
 
   belongs_to :owner, class_name: "User"
   has_many :taggings
+  has_many :comments
   has_many :tags, through: :taggings, dependent: :destroy
 
   validates :owner, :title, presence: true

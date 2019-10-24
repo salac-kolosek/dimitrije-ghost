@@ -32,6 +32,6 @@ class User < ApplicationRecord
 
   def create_slug
     # make this prettier
-    self.slug = full_name.split(" ")[0].downcase + "-" + full_name.split(" ")[1].first.downcase unless full_name == nil
+    self.slug = full_name
   end
 end

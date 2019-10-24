@@ -18,15 +18,11 @@ class StoriesController < ApplicationController
   end
 
   def create
-    @story = Story.new(story_params)
-    @story.owner = current_user
-    if @story.save
+    run Story::Create, story_params do |result|
       flash[:success] = "Story created!"
       redirect_to stories_path
-    else
-      flash[:alert] = "There was problem!"
-      redirect_to new_story_path
     end
+      flash[:alert] = "There was problem!"
   end
 
   def edit
@@ -61,5 +57,10 @@ class StoriesController < ApplicationController
   def set_story
     @story = Story.friendly.find(params[:id])
   end
+
+  private
+  def _run_options(context)
+    context.merge(current_user: current_user)
+end
 
 end

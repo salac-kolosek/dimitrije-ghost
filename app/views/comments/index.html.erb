@@ -1,0 +1,8 @@
+<h1> List of comments </h1>
+
+<% @comments.each do |comment| %>
+  <div class="story-box">
+    <span class="text-muted"><%= comment.content %></span>
+    <hr>
+  </div>
+<% end %>

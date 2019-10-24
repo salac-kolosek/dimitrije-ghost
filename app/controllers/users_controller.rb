@@ -10,21 +10,16 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    authorize @user
-    if @user.update(user_params)
-      flash[:success] = "Profile updated!"
-    else
-      flash[:alert] = "There was an problem!"
+    run User::Update, user_params do |result|
+      flash[:notice] = "User is successfuly updated"
+      authorize result["model"]
+      redirect_to edit_user_path(result["model"])
     end
-
-    redirect_to edit_user_path(@user)
+    flash[:alert] = "There was an problem!"
   end
 
   def destroy
-    @user = User.find(params[:id])
-    DeleteMemberWorker.perform_async(@user)
-    flash[:success] = "Member removed!"
+    run User::Delete
     redirect_to team_path
   end
 
