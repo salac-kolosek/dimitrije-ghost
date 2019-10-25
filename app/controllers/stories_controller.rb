@@ -29,13 +29,11 @@ class StoriesController < ApplicationController
   end
 
   def update
-    if @story.update(story_params)
+    run Story::Update, story_params do |result|
       flash[:success] = "Story updated!"
-    else
-      flash[:alert] = "There was problem!"
+      redirect_to stories_path
     end
-
-    redirect_to edit_story_path(@story)
+      flash[:alert] = "There was problem!"
   end
 
   def destroy
@@ -60,7 +58,8 @@ class StoriesController < ApplicationController
 
   private
   def _run_options(context)
-    context.merge(current_user: current_user)
-end
+    ctx = context.merge(current_user: current_user)
+    ctx.merge(test: "test")
+  end
 
 end
